@@ -1,4 +1,4 @@
-package wordify
+package humango
 
 import "testing"
 

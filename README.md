@@ -1,5 +1,5 @@
-# Wordify [![Build Status](https://travis-ci.com/TarasJan/wordify.svg?branch=master)](https://travis-ci.com/TarasJan/wordify)
-Wordify is a simple Go library for converting numeric input into human readable text. 
+# humango [![Build Status](https://travis-ci.com/TarasJan/humango.svg?branch=master)](https://travis-ci.com/TarasJan/humango)
+Humango is a simple Go library for converting numeric input into human readable text. 
 
 It can be used for humanizing currencies, ledger items, stock or other items that require numbers written in plaintext.
 
@@ -8,15 +8,15 @@ It can be used for humanizing currencies, ledger items, stock or other items tha
 The library exposes the single method `Wordify` that handles whole numbers and floats up to the second decimal point.
 
 ```go
-import github.com/TarasJan/wordify
+import github.com/TarasJan/humango
 
-wordify.Wordify(2020)
+humango.Wordify(2020)
 // Returns "two thousand twenty"
 
-wordify.Wordify(-771)
+humango.Wordify(-771)
 // Returns "minus seven hundred seventy one"
 
-wordify.Wordify(42.94)
+humango.Wordify(42.94)
 // Returns "forty two point ninety four"
 
 ```
