@@ -1,4 +1,4 @@
-# Wordify <img alt="Travis (.org)" src="https://img.shields.io/travis/TarasJan/wordify">
+# Wordify [![Build Status](https://travis-ci.com/TarasJan/wordify.svg?branch=master)](https://travis-ci.com/TarasJan/wordify)
 Wordify is a simple Go library for converting numeric input into human readable text. 
 
 It can be used for humanizing currencies, ledger items, stock or other items that require numbers written in plaintext.
