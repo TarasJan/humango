@@ -58,7 +58,8 @@ func (c *Converter) wordifyInt(i int) (string, error) {
 	index := 0
 	c.handleQuantifier(&num, &wordified, index)
 
-	return strings.Join(wordified, c.Locale.Separator), nil
+	result := strings.Join(wordified, c.Locale.Separator)
+	return strings.TrimSpace(result), nil
 }
 
 func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIndex int) {
@@ -72,8 +73,12 @@ func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIn
 
 	if units > 0 {
 		unit_val := units
+		quantifierName := c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
 		c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
-		*wordified = append(*wordified, c.Locale.Quantifiers[strconv.Itoa(quantifier)])
+		if units > 1 {
+			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
+		}
+		*wordified = append(*wordified, quantifierName)
 		*num -= units * quantifier
 	}
 
@@ -83,13 +88,23 @@ func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIn
 
 func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 	if !c.handledByGlyphs(num) {
+		subNumber := []string{}
 		tens := num / 10
 		num = num % 10
 		if tens > 1 {
-			*wordified = append(*wordified, c.Locale.Tens[tens])
+			subNumber = append(subNumber, c.Locale.Tens[tens])
 			if num != 0 {
-				*wordified = append(*wordified, c.Locale.Glyphs[num])
+				subNumber = append(subNumber, c.Locale.Glyphs[num])
 			}
+			if c.Locale.Rules["agglunative_tens"] != nil {
+				joinerWord := c.Locale.Rules["agglunative_tens"].Context["joiner_word"]
+				for i := len(subNumber)/2-1; i >= 0; i-- {
+					opp := len(subNumber)-1-i
+					subNumber[i], subNumber[opp] = subNumber[opp], subNumber[i]
+				}
+				subNumber = []string{strings.Join(subNumber, joinerWord)}
+			}
+			*wordified = append(*wordified, subNumber...)
 		}
 	} else {
 		if !(len(*wordified) > 1 && num == 0) {

@@ -10,28 +10,20 @@ type Locale struct {
 	// Sign to append at the beginning when the number is negative
 	NegativeSign string `json:"negative_sign"`
 	// Common points of splitting numbers with quantifiers
-	// NOTE for example in Japanese localization 10000 man [万] would be here
+	// NOTE for example in Japanese localization 10000 `man` [万] would be here
 	QuantifyPoints []int `json:"quantify_points"`
 	// Numerals for splitting the numbers to construct compound ones
-	Quantifiers map[string]string `json:"quantifiers"`
+	Quantifiers map[string]*Word `json:"quantifiers"`
 	// Numerals for multilpes of 10
 	Tens []string `json:"tens"`
 	// Numbers that are not result of other compounds of numerals
 	Glyphs []string `json:"glyphs"`
 	// Word signifing separation of decimal part in number
 	DecimalSeparatorWord string `json:"decimal_separator_word"`
+	// Set of special rules defined for this locale
+	Rules map[string]*Rule `json:"rules"`
 }
 
-type Converter struct {
-	Locale *Locale
-}
-
-func NewConverter(language string) *Converter {
-	Locale := localeFor(language)
-	return &Converter{
-		Locale: Locale,
-	}
-}
 
 func localeFor(language string) *Locale {
 	config := readLocaleConfig()
@@ -47,4 +39,16 @@ func readLocaleConfig() map[string]*Locale {
 
 	json.Unmarshal([]byte(CONFIG), &localeMap)
 	return localeMap
+}
+
+
+type Converter struct {
+	Locale *Locale
+}
+
+func NewConverter(language string) *Converter {
+	Locale := localeFor(language)
+	return &Converter{
+		Locale: Locale,
+	}
 }
