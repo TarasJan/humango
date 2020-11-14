@@ -1,54 +1,141 @@
 package humango
 
-import (
-	"encoding/json"
+import(
+	"math"
+	"strconv"
+	"strings"
 )
-
-type Locale struct {
-	// Separator between each numeral in sequence
-	Separator string `json:"separator"`
-	// Sign to append at the beginning when the number is negative
-	NegativeSign string `json:"negative_sign"`
-	// Common points of splitting numbers with quantifiers
-	// NOTE for example in Japanese localization 10000 `man` [万] would be here
-	QuantifyPoints []int `json:"quantify_points"`
-	// Numerals for splitting the numbers to construct compound ones
-	Quantifiers map[string]*Word `json:"quantifiers"`
-	// Numerals for multilpes of 10
-	Tens []string `json:"tens"`
-	// Numbers that are not result of other compounds of numerals
-	Glyphs []string `json:"glyphs"`
-	// Word signifing separation of decimal part in number
-	DecimalSeparatorWord string `json:"decimal_separator_word"`
-	// Set of special rules defined for this locale
-	Rules map[string]*Rule `json:"rules"`
-}
-
-
-func localeFor(language string) *Locale {
-	config := readLocaleConfig()
-	return config[language]
-}
-
-func readLocaleConfig() map[string]*Locale {
-	var localeMap map[string]*Locale
-	// config, err := ioutil.ReadFile("./config.json")
-
-	// if err != nil {
-	// }
-
-	json.Unmarshal([]byte(CONFIG), &localeMap)
-	return localeMap
-}
-
 
 type Converter struct {
 	Locale *Locale
+	Unit string
+	WithDecimal bool
 }
 
-func NewConverter(language string) *Converter {
+func NewConverter(language string, unit string, withDecimal bool) *Converter {
 	Locale := localeFor(language)
 	return &Converter{
 		Locale: Locale,
+		Unit: unit,
+		WithDecimal: withDecimal,
 	}
+}
+
+// For now only two decimal points are supported (for monetary values usage)
+func (c *Converter) wordifyFloat(i float64) (string, error) {
+	j := math.Abs(i)
+
+	wholeNum := int(math.Floor(j))
+	if math.Signbit(i) {
+		wholeNum = -wholeNum
+	}
+	decimalsNum := int(math.Round(math.Mod(j, 1.0) * 100))
+
+	whole, err := c.wordifyInt(wholeNum)
+	if err != nil {
+		return "", err
+	}
+	wordified := []string{whole}
+	if decimalsNum != 0 {
+		wordified = append(wordified, c.Locale.DecimalSeparatorWord)
+		decimals, err := c.wordifyInt(decimalsNum)
+		if err != nil {
+			return "", err
+		}
+		wordified = append(wordified, decimals)
+	}
+
+	if c.WithDecimal {
+		c.appendUnit(j, &wordified)
+	}
+
+	return strings.Join(wordified, c.Locale.Separator), nil
+}
+
+func (c *Converter) wordifyInt(i int) (string, error) {
+	num := int(math.Abs(float64(i)))
+	wordified := []string{}
+	index := 0
+
+	c.appendSign(i, &wordified)
+	c.handleQuantifier(&num, &wordified, index)
+
+	if !c.WithDecimal {
+		c.appendUnit(math.Abs(float64(i)), &wordified)
+	}
+
+	result := strings.Join(wordified, c.Locale.Separator)
+	return strings.TrimSpace(result), nil
+}
+
+func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIndex int) {
+	if quantifierIndex >= len(c.Locale.QuantifyPoints) {
+		c.handleBelowHundreds(*num, wordified)
+		return
+	}
+
+	quantifier := c.Locale.QuantifyPoints[quantifierIndex]
+	units := *num / quantifier
+
+	if units > 0 {
+		unit_val := units
+		quantifierName := c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
+		c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
+		if units > 1 {
+			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
+		}
+		*wordified = append(*wordified, quantifierName)
+		*num -= units * quantifier
+	}
+
+	c.handleQuantifier(num, wordified, quantifierIndex+1)
+	return
+}
+
+func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
+	if !c.handledByGlyphs(num) {
+		subNumber := []string{}
+		tens := num / 10
+		num = num % 10
+		if tens > 1 {
+			subNumber = append(subNumber, c.Locale.Tens[tens])
+			if num != 0 {
+				subNumber = append(subNumber, c.Locale.Glyphs[num])
+			}
+			if c.Locale.Rules["agglunative_tens"] != nil {
+				joinerWord := c.Locale.Rules["agglunative_tens"].Context["joiner_word"]
+				for i := len(subNumber)/2-1; i >= 0; i-- {
+					opp := len(subNumber)-1-i
+					subNumber[i], subNumber[opp] = subNumber[opp], subNumber[i]
+				}
+				subNumber = []string{strings.Join(subNumber, joinerWord)}
+			}
+			*wordified = append(*wordified, subNumber...)
+		}
+	} else {
+		if !(len(*wordified) > 1 && num == 0) {
+			*wordified = append(*wordified, c.Locale.Glyphs[num])
+		}
+	}
+}
+
+func (c *Converter) appendUnit(i float64, wordified *[]string) {
+	if c.Locale.Units[c.Unit] != nil {
+		unit := c.Locale.Units[c.Unit]
+		if i >= 2.0 || i == 0.0  {
+			*wordified = append(*wordified, unit.Plural)
+		} else {
+			*wordified = append(*wordified, unit.Singular)
+		}
+	}
+}
+
+func (c *Converter) appendSign(i int, wordified *[]string) {
+	if i < 0 {
+		*wordified = append(*wordified, c.Locale.NegativeSign)
+	}
+}
+
+func (c *Converter) handledByGlyphs(num int) bool {
+	return num <= len(c.Locale.Glyphs)-1
 }

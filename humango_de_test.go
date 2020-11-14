@@ -12,7 +12,7 @@ func TestIntDEEightyFiveThousandSixHundredSeventyEight(t *testing.T) {
 func TestIntDEEightHundredSeventySevenThousandSixHundredTen(t *testing.T) {
 	result, _ := WordifyWithLocale(877610, "de")
 	if result != "achthundertsiebenundsiebzigtausendsechshundertzehn" {
-		t.Errorf("WordifyWithLocale(877610, \"de\") did not return \"achthundertsiebenundsiebzigtausendsechshundertzehn\" : " + result)
+		t.Errorf("WordifyWithLocale(877610, \"de\") did not return \"achthundertsiebenundsiebzigtausendsechshundertzehn\" :" + result)
 	}
 }
 

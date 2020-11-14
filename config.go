@@ -15,7 +15,13 @@ const CONFIG = `{
         },
         "tens": ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"],
         "glyphs": ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "forteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"],
-        "rules": {}
+        "rules": {},
+        "units": {
+            "USD": {"singular": "dollar", "plural": "dollars"},
+            "EUR": {"singular": "euro", "plural": "euro"},
+            "GBP": {"singular": "pound", "plural": "pounds"},
+            "JPY": {"singular": "yen", "plural": "yen"}
+        }
     },
     "de": {
         "name": "de-DE",
@@ -38,6 +44,12 @@ const CONFIG = `{
                     "joiner_word":"und"
                 }
             }
+        },
+        "units": {
+            "USD": {"singular": " Dollar", "plural": " Dollar"},
+            "GBP": {"singular": " Pfund", "plural": " Pfund"},
+            "EUR": {"singular": " Euro", "plural": " Euro"},
+            "JPY": {"singular": " Yen", "plural": " Yen"}
         }
     },
     "jp": {
@@ -53,6 +65,12 @@ const CONFIG = `{
         },
         "tens": ["", "", "二十", "三十", "四十", "五十", "六十", "七十", "八十", "九十"],
         "glyphs": ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九"],
-        "rules": {}
+        "rules": {},
+        "units": {
+            "USD": {"singular": "ドル", "plural": "ドル"},
+            "GBP": {"singular": "ポンド", "plural": "ポンド"},
+            "EUR": {"singular": "ユーロ", "plural": "ユーロ"},
+            "JPY": {"singular": "円", "plural": "円"}
+        }
     }
 }`

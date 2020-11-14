@@ -28,12 +28,30 @@ humango.WordifyWithLocale(50601, "en")
 
 humango.WordifyWithLocale(50601, "jp")
 // Returns "五万六百一"
+
+humango.WordifyWithLocale(50601, "de")
+// Returns "funfzigtausendsechshundertein"
 ```
+
+If you would like to add units into the mix the `WordifyWithLocaleAndUnit` is the method to go for\*:
+```go
+humango.WordifyWithLocaleAndUnit(50601, "en", "USD")
+// Returns "fifty thousand six hundred one dollars"
+
+humango.WordifyWithLocale(50601, "jp", "JPY")
+// Returns "五万六百一円"
+
+humango.WordifyWithLocale(50601, "de", "EUR")
+// Returns "fünfzigtausendsechshundertein Euro"
+```
+
+\*Currently supported units are dollars `USD`, euro `EUR`, pounds `GBP`, and yen `JPY`)
 
 # Upcoming Features
 
-Currently only English and Japanese numerals are supported though other languages are in the works. Future support for formatting currencies and common units akin to Rails' [number_to_human](https://apidock.com/rails/v5.2.3/ActionView/Helpers/NumberHelper/number_to_human) is planned.
-
+Other languages are in the works - Polish and Spanish are upcoming.
+More units spanning currencies, weights and scientific measures will be introduced. 
+Handling of Decimal numbers and strings is planned.
 # Licensing
 
 The software is licensed under MIT License.
