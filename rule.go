@@ -1,6 +1,6 @@
 package humango
 
 type Rule struct {
-	Name string `json:name`
-	Context map[string]string `json:context`
+	Name    string                 `json:"name"`
+	Context map[string]interface{} `json:"context"`
 }

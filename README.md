@@ -31,6 +31,9 @@ humango.WordifyWithLocale(50601, "jp")
 
 humango.WordifyWithLocale(50601, "de")
 // Returns "funfzigtausendsechshundertein"
+
+humango.WordifyWithLocale(50601, "pl")
+// Returns "pięćdziesiąt tysięcy sześćset jeden"
 ```
 
 If you would like to add units into the mix the `WordifyWithLocaleAndUnit` is the method to go for\*:
@@ -45,11 +48,11 @@ humango.WordifyWithLocale(50601, "de", "EUR")
 // Returns "fünfzigtausendsechshundertein Euro"
 ```
 
-\*Currently supported units are dollars `USD`, euro `EUR`, pounds `GBP`, and yen `JPY`)
+\*Currently supported units are dollars `USD`, euro `EUR`, pounds `GBP`, yen `JPY` and zloty `PLN`)
 
 # Upcoming Features
 
-Other languages are in the works - Polish and Spanish are upcoming.
+Other languages are in the works - Polish requires a bit of tweaking and Spanish is upcoming.
 More units spanning currencies, weights and scientific measures will be introduced. 
 Handling of Decimal numbers and strings is planned.
 # Licensing

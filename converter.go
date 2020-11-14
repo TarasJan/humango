@@ -1,22 +1,22 @@
 package humango
 
-import(
+import (
 	"math"
 	"strconv"
 	"strings"
 )
 
 type Converter struct {
-	Locale *Locale
-	Unit string
+	Locale      *Locale
+	Unit        string
 	WithDecimal bool
 }
 
 func NewConverter(language string, unit string, withDecimal bool) *Converter {
 	Locale := localeFor(language)
 	return &Converter{
-		Locale: Locale,
-		Unit: unit,
+		Locale:      Locale,
+		Unit:        unit,
 		WithDecimal: withDecimal,
 	}
 }
@@ -73,17 +73,22 @@ func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIn
 		c.handleBelowHundreds(*num, wordified)
 		return
 	}
-
+	var quantifierName string
 	quantifier := c.Locale.QuantifyPoints[quantifierIndex]
 	units := *num / quantifier
 
 	if units > 0 {
 		unit_val := units
-		quantifierName := c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
-		c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
-		if units > 1 {
-			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
+		if c.Locale.Rules["custom_hundreds"] != nil && quantifier == 100 {
+			quantifierName = c.Locale.Rules["custom_hundreds"].Context["hundreds"].([]interface{})[units].(string)
+		} else {
+			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
+			if units > 1 {
+				quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
+			}
+			c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
 		}
+
 		*wordified = append(*wordified, quantifierName)
 		*num -= units * quantifier
 	}
@@ -104,11 +109,11 @@ func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 			}
 			if c.Locale.Rules["agglunative_tens"] != nil {
 				joinerWord := c.Locale.Rules["agglunative_tens"].Context["joiner_word"]
-				for i := len(subNumber)/2-1; i >= 0; i-- {
-					opp := len(subNumber)-1-i
+				for i := len(subNumber)/2 - 1; i >= 0; i-- {
+					opp := len(subNumber) - 1 - i
 					subNumber[i], subNumber[opp] = subNumber[opp], subNumber[i]
 				}
-				subNumber = []string{strings.Join(subNumber, joinerWord)}
+				subNumber = []string{strings.Join(subNumber, joinerWord.(string))}
 			}
 			*wordified = append(*wordified, subNumber...)
 		}
@@ -122,7 +127,7 @@ func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 func (c *Converter) appendUnit(i float64, wordified *[]string) {
 	if c.Locale.Units[c.Unit] != nil {
 		unit := c.Locale.Units[c.Unit]
-		if i >= 2.0 || i == 0.0  {
+		if i >= 2.0 || i == 0.0 {
 			*wordified = append(*wordified, unit.Plural)
 		} else {
 			*wordified = append(*wordified, unit.Singular)

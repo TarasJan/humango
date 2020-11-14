@@ -20,7 +20,8 @@ const CONFIG = `{
             "USD": {"singular": "dollar", "plural": "dollars"},
             "EUR": {"singular": "euro", "plural": "euro"},
             "GBP": {"singular": "pound", "plural": "pounds"},
-            "JPY": {"singular": "yen", "plural": "yen"}
+            "JPY": {"singular": "yen", "plural": "yen"},
+            "PLN": {"singular": "zloty", "plural": "zlotys"}
         }
     },
     "de": {
@@ -49,7 +50,8 @@ const CONFIG = `{
             "USD": {"singular": " Dollar", "plural": " Dollar"},
             "GBP": {"singular": " Pfund", "plural": " Pfund"},
             "EUR": {"singular": " Euro", "plural": " Euro"},
-            "JPY": {"singular": " Yen", "plural": " Yen"}
+            "JPY": {"singular": " Yen", "plural": " Yen"},
+            "PLN": {"singular": " Zloty", "plural": " Zloty"}
         }
     },
     "jp": {
@@ -70,7 +72,37 @@ const CONFIG = `{
             "USD": {"singular": "ドル", "plural": "ドル"},
             "GBP": {"singular": "ポンド", "plural": "ポンド"},
             "EUR": {"singular": "ユーロ", "plural": "ユーロ"},
-            "JPY": {"singular": "円", "plural": "円"}
+            "JPY": {"singular": "円", "plural": "円"},
+            "PLN": {"singular": "個のzlotys", "plural": "個のzlotys"}
+        }
+    },
+    "pl": {
+        "name": "pl-PL",
+        "separator": " ",
+        "decimal_separator_word": ",",
+        "negative_sign": "minus",
+        "quantify_points": [1000000, 1000, 100],
+        "quantifiers": {
+            "100": {"singular": "sto", "plural": "-"},
+            "1000": {"singular": "tysiąc", "plural": "tysięcy"},
+            "1000000": {"singular": "milion", "plural": "milionów"} 
+        },
+        "tens": ["", "", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"],
+        "glyphs": ["zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"],
+        "rules": {
+            "custom_hundreds": {
+                "name": "custom_hundreds",
+                "context": {
+                    "hundreds": ["", "sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset", "osiemset", "dziewięćset"]
+                }
+            }
+        },
+        "units": {
+            "USD": {"singular": "dolar", "plural": "ドル"},
+            "GBP": {"singular": "funt", "plural": "funtów"},
+            "EUR": {"singular": "euro", "plural": "euro"},
+            "JPY": {"singular": "jen", "plural": "jenów"},
+            "PLN": {"singular": "złoty", "plural": "złotych"}
         }
     }
 }`
