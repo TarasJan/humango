@@ -81,11 +81,12 @@ const CONFIG = `{
         "separator": " ",
         "decimal_separator_word": ",",
         "negative_sign": "minus",
-        "quantify_points": [1000000, 1000, 100],
+        "quantify_points": [1000000000, 1000000, 1000, 100],
         "quantifiers": {
             "100": {"singular": "sto", "plural": "-"},
             "1000": {"singular": "tysiąc", "plural": "tysięcy"},
-            "1000000": {"singular": "milion", "plural": "milionów"} 
+            "1000000": {"singular": "milion", "plural": "milionów"},
+            "1000000000": {"singular": "miliard", "plural": "miliardów"}
         },
         "tens": ["", "", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"],
         "glyphs": ["zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"],
@@ -94,6 +95,12 @@ const CONFIG = `{
                 "name": "custom_hundreds",
                 "context": {
                     "hundreds": ["", "sto", "dwieście", "trzysta", "czterysta", "pięćset", "sześćset", "siedemset", "osiemset", "dziewięćset"]
+                }
+            },
+            "slavic_plural": {
+                "name": "slavic_plural",
+                "context": {
+                    "quantifiers": {"1000": "tysiące", "1000000": "miliony", "1000000000": "miliardy"}
                 }
             }
         },

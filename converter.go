@@ -85,6 +85,9 @@ func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIn
 			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
 			if units > 1 {
 				quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
+				if c.Locale.Rules["slavic_plural"] != nil && (units < 5 || (units > 19 && units%10 < 5 && units%10 > 1)) {
+					quantifierName = c.Locale.Rules["slavic_plural"].Context["quantifiers"].(map[string]interface{})[strconv.Itoa(quantifier)].(string)
+				}
 			}
 			c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
 		}

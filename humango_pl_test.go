@@ -36,3 +36,38 @@ func TestIntPLEightHundredSeventySevenThousandSixHundredTen(t *testing.T) {
 		t.Errorf("WordifyWithLocale(877610, \"pl\") did not return \"osiemset siedemdziesiąt siedem tysięcy sześćset dziesięć\" :" + result)
 	}
 }
+
+func TestIntPLThreeThousandThreeHundredThirtyThree(t *testing.T) {
+	result, _ := WordifyWithLocale(3333, "pl")
+	if result != "trzy tysiące trzysta trzydzieści trzy" {
+		t.Errorf("WordifyWithLocale(3333, \"pl\") did not return \"trzy tysiące trzysta trzydzieści trzy\" :" + result)
+	}
+}
+
+func TestIntPLTwoMillionZlotys(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(2000000, "pl", "PLN")
+	if result != "dwa miliony złotych" {
+		t.Errorf("WordifyWithLocale(2000000, \"pl\", \"PLN\") did not return \"dwa miliony złotych\" :" + result)
+	}
+}
+
+func TestIntPLFourBillionZlotys(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(4000000000, "pl", "PLN")
+	if result != "cztery miliardy złotych" {
+		t.Errorf("WordifyWithLocale(4000000000, \"pl\", \"PLN\") did not return \"cztery miliardy złotych\" :" + result)
+	}
+}
+
+func TestIntPLTwentyOneThousand(t *testing.T) {
+	result, _ := WordifyWithLocale(21000, "pl")
+	if result != "dwadzieścia jeden tysięcy" {
+		t.Errorf("WordifyWithLocale(21000, \"pl\") did not return \"dwadzieścia jeden tysięcy\" :" + result)
+	}
+}
+
+func TestIntPLTwentyThreeThousand(t *testing.T) {
+	result, _ := WordifyWithLocale(23000, "pl")
+	if result != "dwadzieścia trzy tysiące" {
+		t.Errorf("WordifyWithLocale(23000, \"pl\") did not return \"dwadzieścia trzy tysiące\" :" + result)
+	}
+}
