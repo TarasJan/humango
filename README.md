@@ -52,7 +52,7 @@ humango.WordifyWithLocale(50601, "de", "EUR")
 
 # Upcoming Features
 
-Other languages are in the works - Polish requires a bit of tweaking and Spanish is upcoming.
+Other languages are in the works - Spanish, Italian and Russian are upcoming.
 More units spanning currencies, weights and scientific measures will be introduced. 
 Handling of Decimal numbers and strings is planned.
 # Licensing

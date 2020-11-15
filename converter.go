@@ -36,17 +36,22 @@ func (c *Converter) wordifyFloat(i float64) (string, error) {
 		return "", err
 	}
 	wordified := []string{whole}
-	if decimalsNum != 0 {
+
+	if c.Locale.Units[c.Unit] == nil && decimalsNum != 0 {
 		wordified = append(wordified, c.Locale.DecimalSeparatorWord)
+	} else {
+		c.appendUnit(float64(wholeNum), &wordified)
+	}
+	if decimalsNum != 0 {
 		decimals, err := c.wordifyInt(decimalsNum)
 		if err != nil {
 			return "", err
 		}
 		wordified = append(wordified, decimals)
-	}
 
-	if c.WithDecimal {
-		c.appendUnit(j, &wordified)
+		if c.WithDecimal {
+			c.appendSubunit(j, &wordified)
+		}
 	}
 
 	return strings.Join(wordified, c.Locale.Separator), nil
@@ -131,9 +136,20 @@ func (c *Converter) appendUnit(i float64, wordified *[]string) {
 	if c.Locale.Units[c.Unit] != nil {
 		unit := c.Locale.Units[c.Unit]
 		if i >= 2.0 || i == 0.0 {
-			*wordified = append(*wordified, unit.Plural)
+			*wordified = append(*wordified, unit.Unit.Plural)
 		} else {
-			*wordified = append(*wordified, unit.Singular)
+			*wordified = append(*wordified, unit.Unit.Singular)
+		}
+	}
+}
+
+func (c *Converter) appendSubunit(i float64, wordified *[]string) {
+	if c.Locale.Units[c.Unit] != nil {
+		unit := c.Locale.Units[c.Unit]
+		if i-math.Floor(i) >= 0.01 || i == 0.0 {
+			*wordified = append(*wordified, unit.SubUnit.Plural)
+		} else {
+			*wordified = append(*wordified, unit.SubUnit.Singular)
 		}
 	}
 }

@@ -17,11 +17,26 @@ const CONFIG = `{
         "glyphs": ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "forteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"],
         "rules": {},
         "units": {
-            "USD": {"singular": "dollar", "plural": "dollars"},
-            "EUR": {"singular": "euro", "plural": "euro"},
-            "GBP": {"singular": "pound", "plural": "pounds"},
-            "JPY": {"singular": "yen", "plural": "yen"},
-            "PLN": {"singular": "zloty", "plural": "zlotys"}
+            "USD": { 
+                "unit": {"singular": "dollar", "plural": "dollars"},
+                "subunit":  {"singular": "cent", "plural": "cents"}
+            },
+            "EUR": { 
+                "unit": {"singular": "euro", "plural": "euro"},
+                "subunit":  {"singular": "eurocent", "plural": "eurocents"}
+            },
+            "GBP": { 
+                "unit": {"singular": "pound", "plural": "pounds"},
+                "subunit":  {"singular": "penny", "plural": "pennies"}
+            },
+            "JPY": { 
+                "unit": {"singular": "yen", "plural": "yen"},
+                "subunit":  {"singular": "sen", "plural": "sen"}
+            },
+            "PLN": { 
+                "unit": {"singular": "zloty", "plural": "zlotys"},
+                "subunit":  {"singular": "groszy", "plural": "groszys"}
+            }
         }
     },
     "de": {
@@ -47,11 +62,26 @@ const CONFIG = `{
             }
         },
         "units": {
-            "USD": {"singular": " Dollar", "plural": " Dollar"},
-            "GBP": {"singular": " Pfund", "plural": " Pfund"},
-            "EUR": {"singular": " Euro", "plural": " Euro"},
-            "JPY": {"singular": " Yen", "plural": " Yen"},
-            "PLN": {"singular": " Zloty", "plural": " Zloty"}
+            "USD":{ 
+                "unit": {"singular": " Dollar ", "plural": " Dollar "},
+                "subunit":  {"singular": " Cent ", "plural": " Cent"}
+            },
+            "GBP": { 
+                "unit": {"singular": " Pfund ", "plural": " Pfund "},
+                "subunit":  {"singular": " Penny ", "plural": " Penny"}
+            },
+            "EUR": { 
+                "unit": {"singular": " Euro ", "plural": " Euro "},
+                "subunit":  {"singular": " Eurocent ", "plural": " Eurocent"}
+            },
+            "JPY": { 
+                "unit": {"singular": " Yen ", "plural": " Yen "},
+                "subunit":  {"singular": " Sen ", "plural": " Sen"}
+            },
+            "PLN": { 
+                "unit": {"singular": " Zloty ", "plural": " Zloty "},
+                "subunit":  {"singular": " Grosch ", "plural": " Groschen"}
+            }
         }
     },
     "jp": {
@@ -69,11 +99,26 @@ const CONFIG = `{
         "glyphs": ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九"],
         "rules": {},
         "units": {
-            "USD": {"singular": "ドル", "plural": "ドル"},
-            "GBP": {"singular": "ポンド", "plural": "ポンド"},
-            "EUR": {"singular": "ユーロ", "plural": "ユーロ"},
-            "JPY": {"singular": "円", "plural": "円"},
-            "PLN": {"singular": "個のzlotys", "plural": "個のzlotys"}
+            "USD": { 
+                "unit": {"singular": "ドル", "plural": "ドル"},
+                "subunit":  {"singular": "セント", "plural": "セント"}
+            },
+            "GBP": { 
+                "unit": {"singular": "ポンド", "plural": "ポンド"},
+                "subunit":  {"singular": "ペニー", "plural": "ペニー"}
+            },
+            "EUR": { 
+                "unit": {"singular": "ユーロ", "plural": "ユーロ"},
+                "subunit":  {"singular": "ユーロセント", "plural": "ユーロセント"}
+            }, 
+            "JPY": { 
+                "unit": {"singular": "円", "plural": "円"},
+                "subunit":  {"singular": "銭", "plural": "銭"}
+            },
+            "PLN": { 
+                "unit": {"singular": "個のzlotys", "plural": "個のzlotys"},
+                "subunit":  {"singular": "セント", "plural": "セント"}
+            }
         }
     },
     "pl": {
@@ -105,11 +150,26 @@ const CONFIG = `{
             }
         },
         "units": {
-            "USD": {"singular": "dolar", "plural": "ドル"},
-            "GBP": {"singular": "funt", "plural": "funtów"},
-            "EUR": {"singular": "euro", "plural": "euro"},
-            "JPY": {"singular": "jen", "plural": "jenów"},
-            "PLN": {"singular": "złoty", "plural": "złotych"}
+            "USD": { 
+                "unit": {"singular": "dolar", "plural": "dolarów"},
+                "subunit":  {"singular": "cent", "plural": "centów"}
+            },
+            "GBP": { 
+                "unit": {"singular": "funt", "plural": "funtów"},
+                "subunit":  {"singular": "pens", "plural": "pensów"}
+            },
+            "EUR": { 
+                "unit": {"singular": "euro", "plural": "euro"},
+                "subunit":  {"singular": "eurocent", "plural": "eurocentów"}
+            },
+            "JPY": { 
+                "unit": {"singular": "jen", "plural": "jenów"},
+                "subunit":  {"singular": "sen", "plural": "senów"}
+            },
+            "PLN": { 
+                "unit": {"singular": "złoty", "plural": "złotych"},
+                "subunit":  {"singular": "grosz", "plural": "groszy"}
+            }
         }
     }
 }`

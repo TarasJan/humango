@@ -25,23 +25,22 @@ func TestUnitsIntNineBillionSixtyTwoEuro(t *testing.T) {
 
 func TestUnitsFloatSevenThousandEightyTwoPointFifteenPounds(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(7082.15, "en", "GBP")
-	if result != "seven thousand eighty two point fifteen pounds" {
+	if result != "seven thousand eighty two pounds fifteen pennies" {
 		t.Errorf("WordifyWithLocaleAndUnit(7082.15, \"en\", \"GBP\") did not return \"seven thousand eighty two point fifteen pounds\"")
 	}
 }
 
 func TestUnitsFloatOnePointFortyNinePound(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(1.49, "en", "GBP")
-	if result != "one point forty nine pound" {
-		t.Errorf("WordifyWithLocaleAndUnit(1.49, \"en\", \"GBP\") did not return \"one point forty nine pound\"")
+	if result != "one pound forty nine pennies" {
+		t.Errorf("WordifyWithLocaleAndUnit(1.49, \"en\", \"GBP\") did not return \"one pound forty nine pennies\" : " + result)
 	}
 }
 
-
 func TestUnitsDEFloatEigthThousandEightHunndredEightyEightPointEightyEightEuro(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(8888.88, "de", "EUR")
-	if result != "achttausendachthundertachtundachtzig Komma achtundachtzig Euro" {
-		t.Errorf("WordifyWithLocaleAndUnit(8888.88, \"de\", \"EUR\") did not return \"achttausendachthundertachtundachtzig Komma achtundachtzig Euro\"")
+	if result != "achttausendachthundertachtundachtzig Euro achtundachtzig Eurocent" {
+		t.Errorf("WordifyWithLocaleAndUnit(8888.88, \"de\", \"EUR\") did not return \"achttausendachthundertachtundachtzig Euro achtundachtzig Eurocent\" : " + result)
 	}
 }
 
@@ -54,8 +53,15 @@ func TestUnitsDESeventyThousandDollars(t *testing.T) {
 
 func TestUnitsJPFloatTwoHundredPointTwentyThreeDollars(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(200.23, "jp", "USD")
-	if result != "二百.二十三ドル" {
-		t.Errorf("WordifyWithLocaleAndUnit(200.23, \"jp\", \"USD\") did not return \"二百.二十三ドル\"" + result)
+	if result != "二百ドル二十三セント" {
+		t.Errorf("WordifyWithLocaleAndUnit(200.23, \"jp\", \"USD\") did not return \"二百ドル二十三セント\"" + result)
+	}
+}
+
+func TestUnitsPLFloatThirteenThousandFiveHundredThirtyZlotyFiftyGroszys(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(13530.50, "pl", "PLN")
+	if result != "trzynaście tysięcy pięćset trzydzieści złotych pięćdziesiąt groszy" {
+		t.Errorf("WordifyWithLocaleAndUnit(13530.50, \"pl\", \"PLN\") did not return \"trzynaście tysięcy pięćset trzydzieści złotych pięćdziesiąt groszy\"" + result)
 	}
 }
 

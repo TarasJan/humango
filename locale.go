@@ -23,9 +23,8 @@ type Locale struct {
 	// Set of special rules defined for this locale
 	Rules map[string]*Rule `json:"rules"`
 	// Map of units supported by the locale
-	Units map[string]*Word `json:"units"`
+	Units map[string]*Unit `json:"units"`
 }
-
 
 func localeFor(language string) *Locale {
 	config := readLocaleConfig()
