@@ -79,6 +79,13 @@ func TestIntOneHundredOne(t *testing.T) {
 	}
 }
 
+func TestIntNineHundredFourteen(t *testing.T) {
+	result, _ := Wordify(914)
+	if result != "nine hundred fourteen" {
+		t.Errorf("Wordify(914) did not return \"nine hundred fourteen\"" + " \\ " + result)
+	}
+}
+
 func TestIntMinusNineHundredTwentyThree(t *testing.T) {
 	result, _ := Wordify(-923)
 	if result != "minus nine hundred twenty three" {
