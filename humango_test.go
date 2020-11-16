@@ -9,6 +9,13 @@ func TestIntZero(t *testing.T) {
 	}
 }
 
+func TestIntMinusZero(t *testing.T) {
+	result, _ := Wordify(-0)
+	if result != "zero" {
+		t.Errorf("Wordify(-0) did not return \"zero\"")
+	}
+}
+
 func TestIntFive(t *testing.T) {
 	result, _ := Wordify(5)
 	if result != "five" {

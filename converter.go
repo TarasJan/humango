@@ -121,7 +121,7 @@ func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 			*wordified = append(*wordified, subNumber...)
 		}
 	} else {
-		if !(len(*wordified) > 1 && num == 0) {
+		if !(len(*wordified) > 0 && num == 0) {
 			*wordified = append(*wordified, c.Locale.Glyphs[num])
 		}
 	}
