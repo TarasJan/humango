@@ -50,7 +50,7 @@ func (c *Converter) wordifyFloat(i float64) (string, error) {
 		wordified = append(wordified, decimals)
 
 		if c.WithDecimal {
-			c.appendSubunit(j, &wordified)
+			c.appendSubunit(float64(decimalsNum), &wordified)
 		}
 	}
 
@@ -87,13 +87,8 @@ func (c *Converter) handleQuantifier(num *int, wordified *[]string, quantifierIn
 		if c.Locale.Rules["custom_hundreds"] != nil && quantifier == 100 {
 			quantifierName = c.Locale.Rules["custom_hundreds"].Context["hundreds"].([]interface{})[units].(string)
 		} else {
-			quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Singular
-			if units > 1 {
-				quantifierName = c.Locale.Quantifiers[strconv.Itoa(quantifier)].Plural
-				if c.Locale.Rules["slavic_plural"] != nil && (units < 5 || (units > 19 && units%10 < 5 && units%10 > 1)) {
-					quantifierName = c.Locale.Rules["slavic_plural"].Context["quantifiers"].(map[string]interface{})[strconv.Itoa(quantifier)].(string)
-				}
-			}
+			word := c.Locale.Quantifiers[strconv.Itoa(quantifier)]
+			quantifierName = word.ForNumber(units, c.Locale)
 			c.handleQuantifier(&unit_val, wordified, quantifierIndex+1)
 		}
 
@@ -135,21 +130,17 @@ func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 func (c *Converter) appendUnit(i float64, wordified *[]string) {
 	if c.Locale.Units[c.Unit] != nil {
 		unit := c.Locale.Units[c.Unit]
-		if i >= 2.0 || i == 0.0 {
-			*wordified = append(*wordified, unit.Unit.Plural)
-		} else {
-			*wordified = append(*wordified, unit.Unit.Singular)
-		}
+		unitName := unit.Unit.ForNumber(int(i), c.Locale)
+		*wordified = append(*wordified, unitName)
 	}
 }
 
 func (c *Converter) appendSubunit(i float64, wordified *[]string) {
 	if c.Locale.Units[c.Unit] != nil {
-		unit := c.Locale.Units[c.Unit]
-		if i-math.Floor(i) >= 0.01 || i == 0.0 {
-			*wordified = append(*wordified, unit.SubUnit.Plural)
-		} else {
-			*wordified = append(*wordified, unit.SubUnit.Singular)
+		if c.Locale.Units[c.Unit] != nil {
+			unit := c.Locale.Units[c.Unit]
+			unitName := unit.SubUnit.ForNumber(int(i), c.Locale)
+			*wordified = append(*wordified, unitName)
 		}
 	}
 }

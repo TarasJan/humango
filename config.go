@@ -128,10 +128,26 @@ const CONFIG = `{
         "negative_sign": "minus",
         "quantify_points": [1000000000, 1000000, 1000, 100],
         "quantifiers": {
-            "100": {"singular": "sto", "plural": "-"},
-            "1000": {"singular": "tysiąc", "plural": "tysięcy"},
-            "1000000": {"singular": "milion", "plural": "milionów"},
-            "1000000000": {"singular": "miliard", "plural": "miliardów"}
+            "100": {
+                "singular": "sto",
+                "plural": "-",
+                "splural": "-"
+            },
+            "1000": {
+                "singular": "tysiąc",
+                "plural": "tysięcy",
+                "splural": "tysiące"
+            },
+            "1000000": {
+                "singular": "milion",
+                "plural": "milionów",
+                "splural": "miliony"
+            },
+            "1000000000": {
+                "singular": "miliard",
+                "plural": "miliardów",
+                "splural": "miliardy"
+            }
         },
         "tens": ["", "", "dwadzieścia", "trzydzieści", "czterdzieści", "pięćdziesiąt", "sześćdziesiąt", "siedemdziesiąt", "osiemdziesiąt", "dziewięćdziesiąt"],
         "glyphs": ["zero", "jeden", "dwa", "trzy", "cztery", "pięć", "sześć", "siedem", "osiem", "dziewięć", "dziesięć", "jedenaście", "dwanaście", "trzynaście", "czternaście", "piętnaście", "szesnaście", "siedemnaście", "osiemnaście", "dziewiętnaście"],
@@ -144,31 +160,69 @@ const CONFIG = `{
             },
             "slavic_plural": {
                 "name": "slavic_plural",
-                "context": {
-                    "quantifiers": {"1000": "tysiące", "1000000": "miliony", "1000000000": "miliardy"}
-                }
+                "context": {}
             }
         },
         "units": {
             "USD": { 
-                "unit": {"singular": "dolar", "plural": "dolarów"},
-                "subunit":  {"singular": "cent", "plural": "centów"}
+                "unit": {
+                    "singular": "dolar",
+                    "plural": "dolarów",
+                    "splural": "dolary"
+                },
+                "subunit":  {
+                    "singular": "cent",
+                    "plural": "centów",
+                    "splural": "centy"
+                }
             },
             "GBP": { 
-                "unit": {"singular": "funt", "plural": "funtów"},
-                "subunit":  {"singular": "pens", "plural": "pensów"}
+                "unit": {
+                    "singular": "funt",
+                    "plural": "funtów",
+                    "splural": "funty"
+                },
+                "subunit":  {
+                    "singular": "pens",
+                    "plural": "pensów",
+                    "splural": "pensy"
+                }
             },
             "EUR": { 
-                "unit": {"singular": "euro", "plural": "euro"},
-                "subunit":  {"singular": "eurocent", "plural": "eurocentów"}
+                "unit": {
+                    "singular": "euro",
+                    "plural": "euro",
+                    "splural": "euro"
+                },
+                "subunit":  {
+                    "singular": "eurocent",
+                    "plural": "eurocentów",
+                    "splural": "eurocenty"
+                }
             },
             "JPY": { 
-                "unit": {"singular": "jen", "plural": "jenów"},
-                "subunit":  {"singular": "sen", "plural": "senów"}
+                "unit": {
+                    "singular": "jen",
+                    "plural": "jenów",
+                    "splural": "jeny"
+                },
+                "subunit":  {
+                    "singular": "sen",
+                    "plural": "senów",
+                    "splural": "seny"
+                }
             },
             "PLN": { 
-                "unit": {"singular": "złoty", "plural": "złotych"},
-                "subunit":  {"singular": "grosz", "plural": "groszy"}
+                "unit": {
+                    "singular": "złoty",
+                    "plural": "złotych",
+                    "splural": "złote"
+                },
+                "subunit":  {
+                    "singular": "grosz",
+                    "plural": "groszy",
+                    "splural": "grosze"
+                }
             }
         }
     }

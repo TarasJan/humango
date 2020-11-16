@@ -65,6 +65,20 @@ func TestUnitsPLFloatThirteenThousandFiveHundredThirtyZlotyFiftyGroszys(t *testi
 	}
 }
 
+func TestUnitsPLFloatTwoZlotyTwentyThreeGroszys(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(2.23, "pl", "PLN")
+	if result != "dwa złote dwadzieścia trzy grosze" {
+		t.Errorf("WordifyWithLocaleAndUnit(2.23, \"pl\", \"PLN\") did not return \"dwa złote dwadzieścia trzy grosze\"" + result)
+	}
+}
+
+func TestUnitsPLFloatFourPoundsThreePennies(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(4.03, "pl", "GBP")
+	if result != "cztery funty trzy pensy" {
+		t.Errorf("WordifyWithLocaleAndUnit(2.23, \"pl\", \"GBP\") did not return \"dwa złote dwadzieścia trzy grosze\"" + result)
+	}
+}
+
 func TestUnitsJPIntThreeHundredThousandSevenHundredYen(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(300700, "jp", "JPY")
 	if result != "三十万七百円" {
