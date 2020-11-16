@@ -72,6 +72,13 @@ func TestUnitsPLFloatTwoZlotyTwentyThreeGroszys(t *testing.T) {
 	}
 }
 
+func TestUnitsZHFloatTwoYuanTwentyThreeFens(t *testing.T) {
+	result, _ := WordifyWithLocaleAndUnit(2.23, "zh", "CNY")
+	if result != "二元二十三分" {
+		t.Errorf("WordifyWithLocaleAndUnit(2.23, \"zh\", \"CNY\") did not return \"二元二十三分\"" + result)
+	}
+}
+
 func TestUnitsPLFloatTwoHundredZloty(t *testing.T) {
 	result, _ := WordifyWithLocaleAndUnit(200, "pl", "PLN")
 	if result != "dwieście złotych" {

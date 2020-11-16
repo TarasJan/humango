@@ -36,6 +36,10 @@ const CONFIG = `{
             "PLN": { 
                 "unit": {"singular": "zloty", "plural": "zlotys"},
                 "subunit":  {"singular": "groszy", "plural": "groszys"}
+            },
+            "CNY": { 
+                "unit": {"singular": "yuan", "plural": "yuans"},
+                "subunit":  {"singular": "fen", "plural": "fens"}
             }
         }
     },
@@ -81,6 +85,10 @@ const CONFIG = `{
             "PLN": { 
                 "unit": {"singular": " Zloty ", "plural": " Zloty "},
                 "subunit":  {"singular": " Grosch ", "plural": " Groschen"}
+            },
+            "CNY": { 
+                "unit": {"singular": "Yuan", "plural": "Yuan"},
+                "subunit": {"singular": "Fen", "plural": "Fen"}
             }
         }
     },
@@ -118,6 +126,51 @@ const CONFIG = `{
             "PLN": { 
                 "unit": {"singular": "個のzlotys", "plural": "個のzlotys"},
                 "subunit":  {"singular": "セント", "plural": "セント"}
+            },
+            "CNY": {
+                "unit": {"singular": "元", "plural": "元"},
+                "subunit":  {"singular": "分", "plural": "分"}
+            }
+        }
+    },
+    "zh": {
+        "name": "zh-CN",
+        "separator": "",
+        "decimal_separator_word": ".",
+        "negative_sign": "-",
+        "quantify_points": [10000, 1000, 100],
+        "quantifiers": {
+            "100": {"singular": "百", "plural": "百"},
+            "1000": {"singular": "千", "plural": "千"},
+            "10000": {"singular": "万", "plural": "万"} 
+        },
+        "tens": ["", "", "二十", "三十", "四十", "五十", "六十", "七十", "八十", "九十"],
+        "glyphs": ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "十二", "十三", "十四", "十五", "十六", "十七", "十八", "十九"],
+        "rules": {},
+        "units": {
+            "USD": { 
+                "unit": {"singular": "美元", "plural": "美元"},
+                "subunit":  {"singular": "美分", "plural": "美分"}
+            },
+            "GBP": { 
+                "unit": {"singular": "英镑", "plural": "英镑"},
+                "subunit":  {"singular": "分钱", "plural": "分钱"}
+            },
+            "EUR": { 
+                "unit": {"singular": "欧元", "plural": "欧元"},
+                "subunit":  {"singular": "欧分", "plural": "欧分"}
+            }, 
+            "JPY": { 
+                "unit": {"singular": "日元", "plural": "日元"},
+                "subunit":  {"singular": "銭", "plural": "銭"}
+            },
+            "PLN": { 
+                "unit": {"singular": "金色的", "plural": "金色的"},
+                "subunit":  {"singular": "銭", "plural": "銭"}
+            },
+            "CNY": {
+                "unit": {"singular": "元", "plural": "元"},
+                "subunit":  {"singular": "分", "plural": "分"}
             }
         }
     },
@@ -222,6 +275,18 @@ const CONFIG = `{
                     "singular": "grosz",
                     "plural": "groszy",
                     "splural": "grosze"
+                }
+            },
+            "CNY": {
+                "unit": {
+                    "singular": "jen",
+                    "plural": "jenów",
+                    "splural": "jeny"
+                },
+                "subunit": {
+                    "singular": "fen",
+                    "plural": "fenów",
+                    "splural": "feny"
                 }
             }
         }
