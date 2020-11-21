@@ -279,14 +279,143 @@ const CONFIG = `{
             },
             "CNY": {
                 "unit": {
-                    "singular": "jen",
-                    "plural": "jenów",
-                    "splural": "jeny"
+                    "singular": "juan",
+                    "plural": "juanów",
+                    "splural": "juany"
                 },
                 "subunit": {
                     "singular": "fen",
                     "plural": "fenów",
                     "splural": "feny"
+                }
+            }
+        }
+    },
+    "ru": {
+        "name": "ru-RU",
+        "separator": " ",
+        "decimal_separator_word": ",",
+        "negative_sign": "минус",
+        "quantify_points": [1000000000, 1000000, 1000, 100],
+        "quantifiers": {
+            "100": {
+                "singular": "сто",
+                "plural": "-",
+                "splural": "-"
+            },
+            "1000": {
+                "singular": "тысяча",
+                "plural": "тысяч",
+                "splural": "тысячи"
+            },
+            "1000000": {
+                "singular": "миллион",
+                "plural": "миллионов",
+                "splural": "миллиона"
+            },
+            "1000000000": {
+                "singular": "миллиард",
+                "plural": "миллиардов",
+                "splural": "миллиарда"
+            }
+        },
+        "tens": ["", "", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"],
+        "glyphs": ["нуль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"],
+        "rules": {
+            "custom_hundreds": {
+                "name": "custom_hundreds",
+                "context": {
+                    "hundreds": ["", "сto", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"]
+                }
+            },
+            "slavic_plural": {
+                "name": "slavic_plural",
+                "context": {}
+            }
+        },
+        "units": {
+            "USD": { 
+                "unit": {
+                    "singular": "долларов",
+                    "plural": "доллар",
+                    "splural": "доллара"
+                },
+                "subunit":  {
+                    "singular": "цент",
+                    "plural": "центов",
+                    "splural": "цента"
+                }
+            },
+            "GBP": { 
+                "unit": {
+                    "singular": "фунт",
+                    "plural": "фунтов",
+                    "splural": "фунта"
+                },
+                "subunit":  {
+                    "singular": "пенс",
+                    "plural": "пенсов",
+                    "splural": "пенса"
+                }
+            },
+            "EUR": { 
+                "unit": {
+                    "singular": "евро",
+                    "plural": "евро",
+                    "splural": "евро"
+                },
+                "subunit":  {
+                    "singular": "евроcent",
+                    "plural": "евроцентов",
+                    "splural": "евроцента"
+                }
+            },
+            "JPY": { 
+                "unit": {
+                    "singular": "иен",
+                    "plural": "иен",
+                    "splural": "иены"
+                },
+                "subunit":  {
+                    "singular": "сен",
+                    "plural": "сен",
+                    "splural": "сены"
+                }
+            },
+            "PLN": { 
+                "unit": {
+                    "singular": "злотый",
+                    "plural": "злотых",
+                    "splural": "злотых"
+                },
+                "subunit":  {
+                    "singular": "цент",
+                    "plural": "центов",
+                    "splural": "цента"
+                }
+            },
+            "CNY": {
+                "unit": {
+                    "singular": "юань",
+                    "plural": "юаней",
+                    "splural": "юаня"
+                },
+                "subunit": {
+                    "singular": "болото",
+                    "plural": "болот",
+                    "splural": "болота"
+                }
+            },
+            "RUB": {
+                "unit": {
+                    "singular": "рубль",
+                    "plural": "рублей",
+                    "splural": "рубля"
+                },
+                "subunit": {
+                    "singular": "копейка",
+                    "plural": "копеек",
+                    "splural": "копейки"
                 }
             }
         }
