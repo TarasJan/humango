@@ -40,6 +40,26 @@ const CONFIG = `{
             "CNY": { 
                 "unit": {"singular": "yuan", "plural": "yuans"},
                 "subunit":  {"singular": "fen", "plural": "fens"}
+            },
+            "RUB": {
+                "unit": {
+                    "singular": "ruble",
+                    "plural": "rubles"
+                },
+                "subunit": {
+                    "singular": "kopek",
+                    "plural": "kopeks"
+                }
+            },
+            "MXN": {
+                "unit": {
+                    "singular": "peso",
+                    "plural": "peso"
+                },
+                "subunit": {
+                    "singular": "centavo",
+                    "plural": "centavo"
+                }
             }
         }
     },
@@ -61,7 +81,8 @@ const CONFIG = `{
             "agglunative_tens": {
                 "name": "agglunative_tens",
                 "context": {
-                    "joiner_word":"und"
+                    "joiner_word":"und",
+                    "swap": true
                 }
             }
         },
@@ -416,6 +437,130 @@ const CONFIG = `{
                     "singular": "копейка",
                     "plural": "копеек",
                     "splural": "копейки"
+                }
+            }
+        }
+    },
+    "es": {
+        "name": "es-ES",
+        "separator": " ",
+        "decimal_separator_word": ",",
+        "negative_sign": "minus",
+        "quantify_points": [1000000000, 1000000, 1000, 100],
+        "quantifiers": {
+            "100": {
+                "singular": "cento",
+                "plural": "-"
+            },
+            "1000": {
+                "singular": "mil",
+                "plural": "mil"
+            },
+            "1000000": {
+                "singular": "millón",
+                "plural": "millónes"
+            },
+            "1000000000": {
+                "singular": "millardo",
+                "plural": "millardos"
+            }
+        },
+        "tens": ["", "", "", "trenta", "quarenta", "cincuenta", "sesenta", "setenta", "ochenta", "noventa"],
+        "glyphs": ["cero", "uno", "dos", "tres", "cuarto", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince", "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiuno", "veintidós", "veintitrés", "veinticuatro", "veinticinco", "veintiséis", "veintisiete", "veintiocho", "veintinueve"],
+        "rules": {
+            "custom_hundreds": {
+                "name": "custom_hundreds",
+                "context": {
+                    "hundreds": ["", "ciento", "doscientos", "trescientos", "cuatrocientos", "quinientos", "seiscientos", "setecientos", "ochocientos", "novecientos"]
+                }
+            },
+            "agglunative_tens": {
+                "name": "agglunative_tens",
+                "context": {
+                    "joiner_word":" y ",
+                    "swap": false
+                }
+            }
+        },
+        "units": {
+            "USD": { 
+                "unit": {
+                    "singular": "dolar",
+                    "plural": "dolares"
+                },
+                "subunit":  {
+                    "singular": "centavo",
+                    "plural": "centavos"
+                }
+            },
+            "GBP": { 
+                "unit": {
+                    "singular": "libra",
+                    "plural": "libras"
+                },
+                "subunit":  {
+                    "singular": "peniques",
+                    "plural": "peniques"
+                }
+            },
+            "EUR": { 
+                "unit": {
+                    "singular": "euro",
+                    "plural": "euros"
+                },
+                "subunit":  {
+                    "singular": "eurocentavo",
+                    "plural": "eurocentavos"
+                }
+            },
+            "JPY": { 
+                "unit": {
+                    "singular": "yen",
+                    "plural": "yenes"
+                },
+                "subunit":  {
+                    "singular": "sen",
+                    "plural": "senes"
+                }
+            },
+            "PLN": { 
+                "unit": {
+                    "singular": "zloty",
+                    "plural": "zlotys"
+                },
+                "subunit":  {
+                    "singular": "grosz",
+                    "plural": "groszys"
+                }
+            },
+            "CNY": {
+                "unit": {
+                    "singular": "yuan",
+                    "plural": "yuanes"
+                },
+                "subunit": {
+                    "singular": "fen",
+                    "plural": "fenes"
+                }
+            },
+            "RUB": {
+                "unit": {
+                    "singular": "rublo",
+                    "plural": "rublos"
+                },
+                "subunit": {
+                    "singular": "kopeks",
+                    "plural": "kopeks"
+                }
+            },
+            "MXN": {
+                "unit": {
+                    "singular": "peso",
+                    "plural": "pesos"
+                },
+                "subunit": {
+                    "singular": "centavo",
+                    "plural": "centavos"
                 }
             }
         }

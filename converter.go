@@ -112,10 +112,13 @@ func (c *Converter) handleBelowHundreds(num int, wordified *[]string) {
 			}
 			if c.Locale.Rules["agglunative_tens"] != nil {
 				joinerWord := c.Locale.Rules["agglunative_tens"].Context["joiner_word"]
-				for i := len(subNumber)/2 - 1; i >= 0; i-- {
-					opp := len(subNumber) - 1 - i
-					subNumber[i], subNumber[opp] = subNumber[opp], subNumber[i]
+				if c.Locale.Rules["agglunative_tens"].Context["swap"] == true {
+					for i := len(subNumber)/2 - 1; i >= 0; i-- {
+						opp := len(subNumber) - 1 - i
+						subNumber[i], subNumber[opp] = subNumber[opp], subNumber[i]
+					}
 				}
+
 				subNumber = []string{strings.Join(subNumber, joinerWord.(string))}
 			}
 			*wordified = append(*wordified, subNumber...)
