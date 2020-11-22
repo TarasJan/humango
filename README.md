@@ -47,12 +47,12 @@ humango.WordifyWithLocale(50601, "jp", "JPY")
 humango.WordifyWithLocale(50601, "de", "EUR")
 // Returns "fünfzigtausendsechshundertein Euro"
 ```
-
-\*Currently supported units are dollars `USD`, euro `EUR`, pounds `GBP`, yen `JPY` and zloty `PLN`)
+ 
+\*Currently supported units are dollars `USD`, euro `EUR`, pounds `GBP`, yen `JPY` and zloty `PLN`, and `RUB` rubles (only for Russian))
 
 # Upcoming Features
 
-Other languages are in the works - Spanish, Italian and Russian are upcoming.
+Other languages are in the works - Spanish, Italian are upcoming.
 More units spanning currencies, weights and scientific measures will be introduced. 
 Handling of Decimal numbers and strings is planned.
 # Licensing
